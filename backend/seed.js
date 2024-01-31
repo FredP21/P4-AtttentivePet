@@ -3,9 +3,6 @@
 // Load environment variables from .env file
 require("dotenv").config();
 
-// Import Faker library for generating fake data
-const { faker } = require("@faker-js/faker");
-
 // Import database client
 const database = require("./database/client");
 
@@ -20,17 +17,70 @@ const seed = async () => {
     // Generating Seed Data
 
     // Optional: Truncate tables (remove existing data)
-    await database.query("truncate item");
+    await database.query("delete from status_announcement");
+    await database.query("delete from status_validation");
 
-    // Insert fake data into the 'item' table
-    for (let i = 0; i < 10; i += 1) {
-      queries.push(
-        database.query("insert into item(title) values (?)", [
-          faker.lorem.word(),
-        ])
-      );
-    }
-
+    queries.push(
+      database.query("insert into status_announcement(status) values (?)", [
+        "trouvé",
+      ])
+    );
+    queries.push(
+      database.query("insert into status_announcement(status) values (?)", [
+        "perdu",
+      ])
+    );
+    queries.push(
+      database.query("insert into status_validation(status) values (?)", [
+        "En Attente",
+      ])
+    );
+    queries.push(
+      database.query("insert into status_validation(status) values (?)", [
+        "Accepté",
+      ])
+    );
+    queries.push(
+      database.query("insert into status_validation(status) values (?)", [
+        "Refusé",
+      ])
+    );
+    queries.push(
+      database.query(
+        "insert into user(nickname, email, password, is_admin) values (?,?,?,?)",
+        ["FredP", "gg@gg.com", "aazz", 1]
+      )
+    );
+    queries.push(
+      database.query(
+        "insert into user(nickname, email, password) values (?,?,?)",
+        ["FredG", "dd@dd.com", "bbzz"]
+      )
+    );
+    queries.push(
+      database.query(
+        "insert into announcement(description, city, phone_number, validation_id, status_id, user_id) values (?,?,?,?,?,?)",
+        ["lorem ipsum", "Paris", "0123456789", 1, 2, 1]
+      )
+    );
+    queries.push(
+      database.query(
+        "insert into announcement(description, city, phone_number, validation_id, status_id, user_id) values (?,?,?,?,?,?)",
+        ["lorem ipsum", "Paris", "0123456789", 2, 1, 2]
+      )
+    );
+    queries.push(
+      database.query(
+        "insert into announcement(description, city, phone_number, validation_id, status_id, user_id) values (?,?,?,?,?,?)",
+        ["lorem ipsum", "Paris", "0123456789", 2, 2, 2]
+      )
+    );
+    queries.push(
+      database.query(
+        "insert into announcement(description, city, phone_number, validation_id, status_id, user_id) values (?,?,?,?,?,?)",
+        ["lorem ipsum", "Paris", "0123456789", 1, 1, 1]
+      )
+    );
     /* ************************************************************************* */
 
     // Wait for all the insertion queries to complete
