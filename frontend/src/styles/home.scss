@@ -1,0 +1,44 @@
+.home {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .logo {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    align-self: center;
+  }
+  picture {
+    width: 100%;
+    height: 300px;
+    @media (min-width: 1024px) {
+      height: 400px;
+    }
+    .home_img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  h1 {
+    text-align: center;
+    margin: 10px 0;
+  }
+  h2,
+  h3,
+  p {
+    margin: 10px 0;
+  }
+  p {
+    font-style: italic;
+    span {
+      font-style: normal;
+      font-weight: bold;
+    }
+  }
+  button {
+    margin-top: 20px;
+  }
+}

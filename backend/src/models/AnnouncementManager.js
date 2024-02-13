@@ -14,14 +14,14 @@ class AnnouncementManager extends AbstractManager {
     desc,
     city,
     phoneNumber,
-    validationId,
     statusId,
+    validationId,
     userId,
   }) {
     // Execute the SQL INSERT query to add a new announcement to the "announcement" table
     const [result] = await this.database.query(
-      `insert into ${this.table} values (?,?,?,?,?,?,?)`,
-      [image, desc, city, phoneNumber, validationId, statusId, userId]
+      `insert into ${this.table} (image_pet, description, city, phone_number, status_id, validation_id, user_id) values (?,?,?,?,?,?,?)`,
+      [image, desc, city, phoneNumber, statusId, validationId, userId]
     );
 
     // Return the ID of the newly inserted announcement

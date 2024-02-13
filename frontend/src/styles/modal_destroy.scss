@@ -1,0 +1,53 @@
+@import "variables.scss";
+
+.modal_destroy {
+  font-family: $secondary-font;
+  height: 300px;
+  width: 250px;
+  border-radius: 10px;
+  background-color: rgba($color: $font-color, $alpha: 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  bottom: 45%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  color: $primary;
+  h1 {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+  }
+  p {
+    font-style: italic;
+    font-weight: bold;
+    color: red;
+    font-size: 14px;
+  }
+  span {
+    width: 80%;
+    height: 60%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    button {
+      width: 80px;
+      height: 40px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      color: $primary;
+      background-color: antiquewhite;
+      border: 1px solid $primary;
+      cursor: pointer;
+      &:hover {
+        background-color: $primary;
+        color: $font-color;
+      }
+    }
+  }
+}
