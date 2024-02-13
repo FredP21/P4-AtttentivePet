@@ -1,0 +1,29 @@
+@import "variables.scss";
+
+.login {
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px;
+  align-items: center;
+  gap: 10rem;
+  height: calc(100svh - 60px);
+  background-color: rgba($color: $secondary, $alpha: 0.6);
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      margin-top: 0.8rem;
+    }
+    button {
+      margin-top: 2rem;
+    }
+    a {
+      margin-top: 0.2rem;
+    }
+  }
+}

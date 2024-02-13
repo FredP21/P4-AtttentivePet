@@ -152,6 +152,7 @@ const editValidation = async (req, res, next) => {
 const add = async (req, res, next) => {
   // Extract the item data from the request body
   const announcement = req.body;
+  console.info(announcement);
 
   try {
     // Insert the announcement into the database
@@ -169,7 +170,7 @@ const add = async (req, res, next) => {
 const destroy = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const [result] = await tables.announcement.delete(id);
+    const result = await tables.announcement.delete(id);
     if (result.affectedRows === 0) {
       res.sendStatus(404);
     } else {

@@ -9,6 +9,15 @@ const router = express.Router();
 // Import userControllers module for handling item-related operations
 const userControllers = require("./controllers/userControllers");
 const announcementControllers = require("./controllers/announcementControllers");
+const authControllers = require("./controllers/authControllers");
+const { checkLogin } = require("./services/auth");
+const { checkRegister } = require("./services/auth");
+
+// Auth
+
+router.post("/register", checkRegister, authControllers.add);
+router.post("/auth", checkLogin, authControllers.login);
+router.post("/logout", authControllers.logout);
 
 // Users
 router.get("/users", userControllers.browse);

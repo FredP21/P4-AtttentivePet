@@ -1,0 +1,62 @@
+@import "variables.scss";
+
+.card_ads {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 16% 16% 16% 26% 26%;
+  padding: 20px;
+  width: 250px;
+  height: 300px;
+  background-color: rgba($color: $secondary, $alpha: 0.6);
+  border-radius: 10px;
+  img {
+    grid-area: 1 / 1 / 4 / 2;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+  h3 {
+    grid-area: 1 / 2 / 2 / 3;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .city {
+    grid-area: 2 / 2 / 3 / 3;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .phone {
+    grid-area: 3 / 2 / 4 / 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .validation {
+    grid-area: 4 / 1 / 5 / 3;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .icons {
+    grid-area: 5/ 1 / 6 / 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+  }
+  .edit_icons {
+    width: 35px;
+    height: 35px;
+    color: orange;
+  }
+  .delete_icons {
+    width: 35px;
+    height: 35px;
+    color: red;
+  }
+}

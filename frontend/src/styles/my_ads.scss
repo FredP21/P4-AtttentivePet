@@ -1,0 +1,22 @@
+@import "variables.scss";
+
+.my_ads {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  padding: 20px;
+  .card_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    @media screen and (min-width: 768px) {
+      margin-top: 50px;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+  }
+}
