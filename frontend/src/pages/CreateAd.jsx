@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useState } from "react";
-import ModalC from "../components/ModalC";
+import ModalC from "../components/modals/ModalC";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/create_ad.scss";
 
@@ -41,6 +41,7 @@ function CreateAd() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.info(ad);
     try {
       axios
         .post(`http://localhost:3310/api/announcements`, {
@@ -53,18 +54,7 @@ function CreateAd() {
           setIsOpen(true);
         });
     } catch (error) {
-      if (error.response) {
-        // La requête a été faite et le serveur a répondu avec un statut d'erreur
-        console.error(error.response.data);
-        console.error(error.response.status);
-        console.error(error.response.headers);
-      } else if (error.request) {
-        // La requête a été faite mais aucune réponse n'a été reçue
-        console.error(error.request);
-      } else {
-        // Quelque chose s'est mal passé lors de la configuration de la requête
-        console.error("Error", error.message);
-      }
+      console.error("Erreur lors de la publication de l'annonce", error);
     }
   };
 
@@ -91,6 +81,7 @@ function CreateAd() {
             name="description"
             value={ad.desc}
             onChange={handleDescriptionChange}
+            maxLength={250}
             required
           />
         </span>

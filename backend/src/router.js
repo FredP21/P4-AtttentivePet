@@ -12,9 +12,12 @@ const announcementControllers = require("./controllers/announcementControllers")
 const authControllers = require("./controllers/authControllers");
 const { checkLogin } = require("./services/auth");
 const { checkRegister } = require("./services/auth");
+const { checkAddAd } = require("./services/checkAnnouncement");
+const { checkUpdateAd } = require("./services/checkAnnouncement");
 
 // Auth
 
+router.get("/auth", authControllers.getUser);
 router.post("/register", checkRegister, authControllers.add);
 router.post("/auth", checkLogin, authControllers.login);
 router.post("/logout", authControllers.logout);
@@ -39,8 +42,8 @@ router.get(
   "/announcements/statement/:id",
   announcementControllers.readAllByValidationId
 );
-router.post("/announcements", announcementControllers.add);
-router.put("/announcements/:id", announcementControllers.edit);
+router.post("/announcements", checkAddAd, announcementControllers.add);
+router.put("/announcements/:id", checkUpdateAd, announcementControllers.edit);
 router.put(
   "/announcements/validation/:id",
   announcementControllers.editValidation

@@ -1,0 +1,16 @@
+@import "variables.scss";
+
+.waitingAds {
+  display: flex;
+  flex-direction: column;
+  h1 {
+    text-align: center;
+    padding: 10px;
+  }
+  section {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+}

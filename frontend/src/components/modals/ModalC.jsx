@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../styles/modal.scss";
+import "../../styles/modal.scss";
 
 function ModalC() {
   return (

@@ -43,7 +43,9 @@ class AnnouncementManager extends AbstractManager {
 
   async readAll() {
     // Execute the SQL SELECT query to retrieve all announcements from the "announcement" table
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+    const [rows] = await this.database.query(
+      `select announcement.*, user.nickname, status_announcement.status as statutAd, status_validation.status as validationAd from ${this.table} join user on announcement.user_id = user.id join status_announcement on announcement.status_id = status_announcement.id join status_validation on announcement.validation_id = status_validation.id`
+    );
 
     // Return the array of announcements
     return rows;
@@ -77,11 +79,19 @@ class AnnouncementManager extends AbstractManager {
   }
 
   // The U of CRUD - Update operation
-  async update({ imagePet, description, city, phoneNumber, statusId, id }) {
+  async update({
+    imagePet,
+    description,
+    city,
+    phoneNumber,
+    statusId,
+    validationId,
+    id,
+  }) {
     // Execute the SQL UPDATE query to modify an existing announcement
     const result = await this.database.query(
-      `update ${this.table} set image_pet = ?, description = ?, city = ?, phone_number = ?, status_id = ? where id = ?`,
-      [imagePet, description, city, phoneNumber, statusId, id]
+      `update ${this.table} set image_pet = ?, description = ?, city = ?, phone_number = ?, status_id = ?, validation_id = ? where id = ?`,
+      [imagePet, description, city, phoneNumber, statusId, validationId, id]
     );
 
     // Return the result of the query

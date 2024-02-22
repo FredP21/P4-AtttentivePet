@@ -1,13 +1,19 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import Button from "../components/Button";
 import CardFind from "../components/CardFind";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/pet_page.scss";
 
 function PetLost() {
-  const [announcement, setAnnouncement] = useState([]);
   const { isAuthenticated } = useContext(AuthContext);
+  const [announcement, setAnnouncement] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
   useEffect(() => {
     axios
       .get("http://localhost:3310/api/announcements/statusandvalidation/2")
@@ -18,6 +24,13 @@ function PetLost() {
         console.info(err);
       });
   }, []);
+
+  const filteredAnnouncements = announcement.filter(
+    (announce) =>
+      announce.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      announce.city.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <main className="main_announcement">
       <h2 className="head_pet">
@@ -25,14 +38,27 @@ function PetLost() {
           ? `${announcement.length} annonce pour les animaux perdus`
           : `${announcement.length} annonces pour les animaux perdus`}
       </h2>
-      <Link to="/creer-annonce">
-        {isAuthenticated ? (
-          <button type="button"> Créez votre annonce</button>
-        ) : null}
-      </Link>
+      {isAuthenticated ? (
+        <Button link="/creer-annonce" title="Creez votre annonce" />
+      ) : null}
+
+      <input
+        type="text"
+        placeholder="Recherche..."
+        onChange={handleSearchChange}
+      />
+
       <section className="announcement">
-        <CardFind announcement={announcement} />
+        {filteredAnnouncements.length > 0 ? (
+          <CardFind announcement={filteredAnnouncements} />
+        ) : (
+          <p>Aucun résultat trouvé</p>
+        )}
       </section>
+
+      {isAuthenticated ? (
+        <Button link="/creer-annonce" title="Creez votre annonce" />
+      ) : null}
     </main>
   );
 }

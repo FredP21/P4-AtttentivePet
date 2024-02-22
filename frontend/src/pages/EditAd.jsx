@@ -9,7 +9,7 @@ function EditAd() {
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get(`http://localhost:3310/api/announcements/${id}`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/announcements/${id}`)
       .then((res) => {
         setAd(res.data);
       })
@@ -53,12 +53,13 @@ function EditAd() {
     e.preventDefault();
     try {
       axios
-        .put(`http://localhost:3310/api/announcements/${id}`, {
+        .put(`${import.meta.env.VITE_BACKEND_URL}/api/announcements/${id}`, {
           imagePet: ad.image_pet,
           description: ad.description,
           city: ad.city,
           phoneNumber: ad.phone_number,
           statusId: ad.status_id,
+          validationId: 1,
         })
         .then((res) => {
           console.info(res);
@@ -92,6 +93,7 @@ function EditAd() {
             value={ad.description}
             onChange={handleDescriptionChange}
             required
+            maxLength={250}
           />
         </span>
         <span className="label_status">

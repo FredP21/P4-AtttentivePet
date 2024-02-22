@@ -73,7 +73,7 @@ const add = async (req, res, next) => {
 const destroy = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const [result] = await tables.user.delete(id);
+    const result = await tables.user.delete(id);
     if (result.affectedRows === 0) {
       res.sendStatus(404);
     } else {

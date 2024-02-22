@@ -10,6 +10,7 @@ import {
 import PropTypes from "prop-types";
 import App from "./App";
 import AuthProvider, { AuthContext } from "./context/AuthContext";
+import Archives from "./pages/Archives";
 import CreateAd from "./pages/CreateAd";
 import EditAd from "./pages/EditAd";
 import Home from "./pages/Home";
@@ -20,22 +21,45 @@ import PetFind from "./pages/PetFind";
 import PetLost from "./pages/PetLost";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
+import Users from "./pages/Users";
+import WaitingAds from "./pages/WaitingAds";
 
 function ProtectedRoute({ children }) {
   const navigate = useNavigate();
-  const { isAuthenticated } = useContext(AuthContext);
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/login");
-    }
-  }, [isAuthenticated, navigate]);
+  const { isAuthenticated, isLoading } = useContext(AuthContext);
 
-  if (!isAuthenticated) {
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      navigate("/connexion");
+    }
+  }, [isAuthenticated, navigate, isLoading]);
+
+  if (isLoading || !isAuthenticated) {
     return null;
   }
 
   return children;
 }
+function AdminRoute({ children }) {
+  const navigate = useNavigate();
+  const { isAuthenticated, user, isLoading } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (!isLoading && (!isAuthenticated || user.is_admin !== 1)) {
+      navigate("/non-admin"); // Remplacez "/non-admin" par la route de votre choix
+    }
+  }, [isAuthenticated, user, navigate, isLoading]);
+
+  if (isLoading || !isAuthenticated || user.is_admin !== 1) {
+    return null;
+  }
+
+  return children;
+}
+
+AdminRoute.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 const router = createBrowserRouter([
   {
@@ -60,16 +84,24 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
+        path: "connexion",
+        element: <Login />,
+      },
+      {
+        path: "non-admin",
+        element: (
+          <ProtectedRoute>
+            <NotFound />,
+          </ProtectedRoute>
+        ),
+      },
+      {
         path: "profil",
         element: (
           <ProtectedRoute>
             <Profile />,
           </ProtectedRoute>
         ),
-      },
-      {
-        path: "login",
-        element: <Login />,
       },
       {
         path: "mes-annonces",
@@ -93,6 +125,30 @@ const router = createBrowserRouter([
           <ProtectedRoute>
             <CreateAd />,
           </ProtectedRoute>
+        ),
+      },
+      {
+        path: "en-attente",
+        element: (
+          <AdminRoute>
+            <WaitingAds />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "archives",
+        element: (
+          <AdminRoute>
+            <Archives />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "utilisateurs",
+        element: (
+          <AdminRoute>
+            <Users />
+          </AdminRoute>
         ),
       },
     ],

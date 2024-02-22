@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import home from "../assets/altHome.jpg";
 import logo from "../assets/logoAP.webp";
+import Button from "../components/Button";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/home.scss";
 
@@ -72,7 +73,9 @@ function Home() {
           className="home_img"
         />
       </picture>
-      {isAuthenticated ? null : <button type="button">s'inscrire</button>}
+      {isAuthenticated ? null : (
+        <Button link="/inscription" title="S'inscrire" />
+      )}
     </main>
   );
 }
