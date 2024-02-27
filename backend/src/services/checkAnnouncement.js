@@ -3,7 +3,6 @@ const Joi = require("joi");
 
 const checkAddAd = (req, res, next) => {
   const schema = Joi.object({
-    image: Joi.string().required(),
     desc: Joi.string().min(10).max(250).required(),
     city: Joi.string().required(),
     phoneNumber: Joi.string().required(),
@@ -17,11 +16,14 @@ const checkAddAd = (req, res, next) => {
     return res.status(400).json({ message: error.details[0].message });
   }
 
+  if (!req.file) {
+    return res.status(400).json({ message: "Image file is required" });
+  }
+
   next();
 };
 const checkUpdateAd = (req, res, next) => {
   const schema = Joi.object({
-    imagePet: Joi.string().required(),
     description: Joi.string().min(10).max(250).required(),
     city: Joi.string().required(),
     phoneNumber: Joi.string().required(),
@@ -32,6 +34,9 @@ const checkUpdateAd = (req, res, next) => {
   const { error } = schema.validate(req.body);
   if (error) {
     return res.status(400).json({ message: error.details[0].message });
+  }
+  if (!req.file) {
+    return res.status(400).json({ message: "Image file is required" });
   }
 
   next();

@@ -24,7 +24,7 @@ function CreateAd() {
   const handlePicChange = (e) => {
     setAd((prevAd) => ({
       ...prevAd,
-      image: e.target.value,
+      image: e.target.files[0],
     }));
   };
   const handleCityChange = (e) => {
@@ -41,13 +41,23 @@ function CreateAd() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.info(ad);
+    const formData = new FormData();
+    Object.keys(ad).forEach((key) => {
+      if (key === "image") {
+        formData.append(key, ad[key], ad[key].name);
+      } else {
+        formData.append(key, ad[key]);
+      }
+    });
+    formData.append("validationId", 1);
+    formData.append("userId", user.id);
+
     try {
       axios
-        .post(`http://localhost:3310/api/announcements`, {
-          ...ad,
-          validationId: 1,
-          userId: user.id,
+        .post(`http://localhost:3310/api/announcements`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         })
         .then(() => {
           console.info("Annonce publié");
@@ -66,10 +76,9 @@ function CreateAd() {
         <span>
           <label htmlFor="image">Image:</label>
           <input
-            type="text"
+            type="file"
             id="image"
             name="image"
-            value={ad.image}
             onChange={handlePicChange}
             required
           />

@@ -24,7 +24,10 @@ function CardAds({ id, image, status, validation, city, phone, handleDelete }) {
 
   return (
     <article className="card_ads">
-      <img src={image} alt="represente un animal" />
+      <img
+        src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${image}`}
+        alt="represente un animal"
+      />
       <h3>{status === 1 ? "Trouvé" : "Perdu"}</h3>
       <p className="city">{city}</p>
       <span className="validation">{validationText}</span>

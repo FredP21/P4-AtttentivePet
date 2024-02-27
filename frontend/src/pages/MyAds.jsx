@@ -24,6 +24,7 @@ function MyAds() {
       )
       .then((res) => {
         setAds(res.data);
+        console.info(res.data);
       });
   }, [user.id]);
   return (

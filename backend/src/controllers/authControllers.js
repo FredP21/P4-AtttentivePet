@@ -53,7 +53,9 @@ const login = async (req, res, next) => {
   }
 };
 const logout = (req, res) => {
-  res.clearCookie("user_token", { httpOnly: true, path: "/" }).sendStatus(200);
+  res
+    .clearCookie("user_token", { httpOnly: true, path: "/", maxAge: 0 })
+    .sendStatus(200);
 };
 
 // eslint-disable-next-line consistent-return

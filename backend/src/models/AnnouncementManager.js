@@ -80,7 +80,7 @@ class AnnouncementManager extends AbstractManager {
 
   // The U of CRUD - Update operation
   async update({
-    imagePet,
+    image,
     description,
     city,
     phoneNumber,
@@ -91,7 +91,7 @@ class AnnouncementManager extends AbstractManager {
     // Execute the SQL UPDATE query to modify an existing announcement
     const result = await this.database.query(
       `update ${this.table} set image_pet = ?, description = ?, city = ?, phone_number = ?, status_id = ?, validation_id = ? where id = ?`,
-      [imagePet, description, city, phoneNumber, statusId, validationId, id]
+      [image, description, city, phoneNumber, statusId, validationId, id]
     );
 
     // Return the result of the query

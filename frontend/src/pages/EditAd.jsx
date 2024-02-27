@@ -34,7 +34,7 @@ function EditAd() {
   const handlePicChange = (e) => {
     setAd((prevAd) => ({
       ...prevAd,
-      image_pet: e.target.value,
+      image_pet: e.target.files[0],
     }));
   };
   const handleCityChange = (e) => {
@@ -51,23 +51,30 @@ function EditAd() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      axios
-        .put(`${import.meta.env.VITE_BACKEND_URL}/api/announcements/${id}`, {
-          imagePet: ad.image_pet,
-          description: ad.description,
-          city: ad.city,
-          phoneNumber: ad.phone_number,
-          statusId: ad.status_id,
-          validationId: 1,
-        })
-        .then((res) => {
-          console.info(res);
-          navigate("/mes-annonces");
-        });
-    } catch (err) {
-      console.info(err);
-    }
+    const formData = new FormData();
+    formData.append("image", ad.image_pet);
+    formData.append("description", ad.description);
+    formData.append("statusId", ad.status_id);
+    formData.append("city", ad.city);
+    formData.append("phoneNumber", ad.phone_number);
+    formData.append("validationId", 1);
+    axios
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/api/announcements/${id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then((res) => {
+        console.info(res);
+        navigate("/mes-annonces");
+      })
+      .catch((err) => {
+        console.info(err);
+      });
   };
 
   return (
@@ -77,10 +84,9 @@ function EditAd() {
         <span>
           <label htmlFor="image">Image:</label>
           <input
-            type="text"
+            type="file"
             id="image"
             name="image"
-            value={ad.image_pet}
             onChange={handlePicChange}
             required
           />

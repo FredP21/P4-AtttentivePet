@@ -112,16 +112,25 @@ const readAllByValidationId = async (req, res, next) => {
 // };
 
 const edit = async (req, res, next) => {
+  const announcement = req.body;
+  const { id } = req.params;
+  if (!req.file) {
+    res.status(400).json({ message: "No file uploaded" });
+    return;
+  }
+  const image = req.file.filename;
+  console.info(announcement);
   try {
-    const announcement = req.body;
-    const { id } = req.params;
-    const [result] = await tables.announcement.update({ id, ...announcement });
+    const [result] = await tables.announcement.update({
+      ...announcement,
+      image,
+      id,
+    });
     if (result.affectedRows === 0) {
       res.sendStatus(404);
     } else {
       res.sendStatus(204);
     }
-    next();
   } catch (err) {
     res.sendStatus(500);
     next(err);
@@ -152,12 +161,19 @@ const editValidation = async (req, res, next) => {
 const add = async (req, res, next) => {
   // Extract the item data from the request body
   const announcement = req.body;
+  if (!req.file) {
+    res.status(400).json({ message: "No file uploaded" });
+    return;
+  }
+  const image = req.file.filename;
   console.info(announcement);
 
   try {
     // Insert the announcement into the database
-    const insertId = await tables.announcement.create(announcement);
-
+    const insertId = await tables.announcement.create({
+      ...announcement,
+      image,
+    });
     // Respond with HTTP 201 (Created) and the ID of the newly inserted announcement
     res.status(201).json({ insertId });
   } catch (err) {

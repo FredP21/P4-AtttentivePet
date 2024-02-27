@@ -4,7 +4,7 @@ import { createContext, useEffect, useMemo, useState } from "react";
 
 export const AuthContext = createContext();
 
-function AuthProvider({ children }) {
+function AuthContextProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const isAuthenticated = user !== null;
@@ -23,7 +23,6 @@ function AuthProvider({ children }) {
         setIsLoading(false);
       }
     };
-
     getUser();
   }, []);
   const handleDelog = (navigate) => {
@@ -50,8 +49,8 @@ function AuthProvider({ children }) {
   );
 }
 
-AuthProvider.propTypes = {
+AuthContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default AuthProvider;
+export default AuthContextProvider;

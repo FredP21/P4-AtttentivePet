@@ -7,7 +7,10 @@ function CardFind({ announcement, handleUpdateGood, handleUpdateWrong }) {
     <>
       {announcement.map((ads) => (
         <article className="card" key={ads.id}>
-          <img src={ads.image_pet} alt="represente un animal" />
+          <img
+            src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${ads.image_pet}`}
+            alt="represente un animal"
+          />
           <h3>{ads.status_id === 1 ? "Trouvé" : "Perdu"}</h3>
           <p className="city">{ads.city}</p>
           <p className="description">{ads.description}</p>

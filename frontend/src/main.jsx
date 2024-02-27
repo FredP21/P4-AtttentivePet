@@ -9,7 +9,7 @@ import {
 
 import PropTypes from "prop-types";
 import App from "./App";
-import AuthProvider, { AuthContext } from "./context/AuthContext";
+import AuthContextProvider, { AuthContext } from "./context/AuthContext";
 import Archives from "./pages/Archives";
 import CreateAd from "./pages/CreateAd";
 import EditAd from "./pages/EditAd";
@@ -159,9 +159,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <AuthProvider>
+    <AuthContextProvider>
       <RouterProvider router={router} />
-    </AuthProvider>
+    </AuthContextProvider>
   </React.StrictMode>
 );
 ProtectedRoute.propTypes = {
