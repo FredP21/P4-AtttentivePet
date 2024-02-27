@@ -87,6 +87,7 @@ function EditAd() {
             type="file"
             id="image"
             name="image"
+            accept=".jpeg, .jpg, .png, .webp"
             onChange={handlePicChange}
             required
           />
@@ -100,6 +101,7 @@ function EditAd() {
             onChange={handleDescriptionChange}
             required
             maxLength={250}
+            minLength={10}
           />
         </span>
         <span className="label_status">

@@ -1,12 +1,10 @@
 import axios from "axios";
 import { useContext, useState } from "react";
-import ModalC from "../components/modals/ModalC";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/create_ad.scss";
 
 function CreateAd() {
   const [ad, setAd] = useState({});
-  const [isOpen, setIsOpen] = useState(false);
   const { user } = useContext(AuthContext);
 
   const handleDescriptionChange = (e) => {
@@ -52,25 +50,22 @@ function CreateAd() {
     formData.append("validationId", 1);
     formData.append("userId", user.id);
 
-    try {
-      axios
-        .post(`http://localhost:3310/api/announcements`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then(() => {
-          console.info("Annonce publié");
-          setIsOpen(true);
-        });
-    } catch (error) {
-      console.error("Erreur lors de la publication de l'annonce", error);
-    }
+    axios
+      .post(`http://localhost:3310/api/announcements`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then(() => {
+        console.info("Votre annonce a bien été publiée");
+      })
+      .catch(() => {
+        console.error("Erreur lors de la publication de votre annonce");
+      });
   };
 
   return (
     <main className="create_ad">
-      {isOpen ? <ModalC /> : null}
       <h1>Créez votre annonce</h1>
       <form onSubmit={handleSubmit}>
         <span>
@@ -79,6 +74,7 @@ function CreateAd() {
             type="file"
             id="image"
             name="image"
+            accept=".jpeg, .jpg, .png, .webp "
             onChange={handlePicChange}
             required
           />
@@ -91,6 +87,7 @@ function CreateAd() {
             value={ad.desc}
             onChange={handleDescriptionChange}
             maxLength={250}
+            minLength={10}
             required
           />
         </span>
