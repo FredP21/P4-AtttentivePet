@@ -1,0 +1,60 @@
+@import "variables.scss";
+
+.modal_admin {
+  background-color: $secondary;
+  width: 100vw;
+  height: 50px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  position: relative;
+  bottom: 72%;
+  right: 12px;
+  justify-content: space-evenly;
+  border-radius: 5px;
+  color: $font-color-secondary;
+  @media screen and (max-width: 500px) {
+    width: 320px;
+  }
+  p {
+    display: flex;
+    gap: 35px;
+    @media screen and (max-width: 500px) {
+      display: none;
+    }
+  }
+  span {
+    font-style: italic;
+    color: red;
+    @media screen and (max-width: 500px) {
+      padding-left: 5px;
+      font-size: 16px;
+    }
+  }
+  button {
+    width: 100px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: $font-color;
+    background-color: $primary;
+    border: 1px solid $primary;
+    cursor: pointer;
+    &:hover {
+      color: red;
+    }
+    @media screen and (max-width: 850px) {
+      width: 80px;
+      height: 25px;
+      font-size: 14px;
+      margin: 5px;
+    }
+  }
+  .return {
+    &:hover {
+      color: orange;
+    }
+  }
+}

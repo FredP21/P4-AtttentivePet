@@ -1,0 +1,64 @@
+@import "variables.scss";
+
+.login,
+.register {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: center;
+  gap: 5rem;
+  color: $primary;
+  background-color: rgba($color: $secondary, $alpha: 0.6);
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    label {
+      display: flex;
+      align-self: self-start;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    input {
+      width: 200px;
+      padding: 5px;
+      border: none;
+      border-bottom: 1px solid $secondary;
+      background: none;
+      color: $font-color-secondary;
+      &:focus {
+        outline: none;
+      }
+    }
+    button {
+      margin-top: 2rem;
+      width: 200px;
+      padding: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      background: none;
+      cursor: pointer;
+      color: $font-color-secondary;
+      border: none;
+      font-size: 20px;
+      &:hover {
+        color: $secondary;
+      }
+    }
+  }
+  a {
+    color: $font-color-secondary;
+    &:visited {
+      color: $font-color-secondary;
+    }
+  }
+}

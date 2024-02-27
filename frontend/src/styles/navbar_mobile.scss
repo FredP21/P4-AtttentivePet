@@ -1,0 +1,27 @@
+@import "variables.scss";
+
+.navbar_mobile {
+  position: fixed;
+  bottom: 0;
+  height: $height;
+  width: 100vw;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: $secondary;
+  box-shadow: 0px -2px 2px 0px rgba($color: $secondary, $alpha: 0.6);
+  ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    li {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
