@@ -1,12 +1,10 @@
 import axios from "axios";
 import { useContext, useState } from "react";
-import ModalC from "../components/ModalC";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/create_ad.scss";
 
 function CreateAd() {
   const [ad, setAd] = useState({});
-  const [isOpen, setIsOpen] = useState(false);
   const { user } = useContext(AuthContext);
 
   const handleDescriptionChange = (e) => {
@@ -24,7 +22,7 @@ function CreateAd() {
   const handlePicChange = (e) => {
     setAd((prevAd) => ({
       ...prevAd,
-      image: e.target.value,
+      image: e.target.files[0],
     }));
   };
   const handleCityChange = (e) => {
@@ -41,45 +39,42 @@ function CreateAd() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      axios
-        .post(`http://localhost:3310/api/announcements`, {
-          ...ad,
-          validationId: 1,
-          userId: user.id,
-        })
-        .then(() => {
-          console.info("Annonce publié");
-          setIsOpen(true);
-        });
-    } catch (error) {
-      if (error.response) {
-        // La requête a été faite et le serveur a répondu avec un statut d'erreur
-        console.error(error.response.data);
-        console.error(error.response.status);
-        console.error(error.response.headers);
-      } else if (error.request) {
-        // La requête a été faite mais aucune réponse n'a été reçue
-        console.error(error.request);
+    const formData = new FormData();
+    Object.keys(ad).forEach((key) => {
+      if (key === "image") {
+        formData.append(key, ad[key], ad[key].name);
       } else {
-        // Quelque chose s'est mal passé lors de la configuration de la requête
-        console.error("Error", error.message);
+        formData.append(key, ad[key]);
       }
-    }
+    });
+    formData.append("validationId", 1);
+    formData.append("userId", user.id);
+
+    axios
+      .post(`http://localhost:3310/api/announcements`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then(() => {
+        console.info("Votre annonce a bien été publiée");
+      })
+      .catch(() => {
+        console.error("Erreur lors de la publication de votre annonce");
+      });
   };
 
   return (
     <main className="create_ad">
-      {isOpen ? <ModalC /> : null}
       <h1>Créez votre annonce</h1>
       <form onSubmit={handleSubmit}>
         <span>
           <label htmlFor="image">Image:</label>
           <input
-            type="text"
+            type="file"
             id="image"
             name="image"
-            value={ad.image}
+            accept=".jpeg, .jpg, .png, .webp "
             onChange={handlePicChange}
             required
           />
@@ -91,6 +86,8 @@ function CreateAd() {
             name="description"
             value={ad.desc}
             onChange={handleDescriptionChange}
+            maxLength={250}
+            minLength={10}
             required
           />
         </span>

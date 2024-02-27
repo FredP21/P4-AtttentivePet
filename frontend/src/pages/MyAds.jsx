@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import Button from "../components/Button";
 import CardAds from "../components/CardAds";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/my_ads.scss";
@@ -24,14 +24,13 @@ function MyAds() {
       )
       .then((res) => {
         setAds(res.data);
+        console.info(res.data);
       });
   }, [user.id]);
   return (
     <main className="my_ads">
       <h2>Mes annonces</h2>
-      <Link to="/creer-annonce">
-        <button type="button">Créer votre annonce</button>
-      </Link>
+      <Button link="/creer-annonce" title="Creez votre annonce" />
       <section className="card_container">
         {ads.map((ad) => (
           <CardAds

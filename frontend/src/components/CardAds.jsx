@@ -3,7 +3,7 @@ import { useState } from "react";
 import { MdDeleteForever, MdEditCalendar } from "react-icons/md";
 import { Link } from "react-router-dom";
 import "../styles/card_ads.scss";
-import ModalD from "./ModalD";
+import ModalD from "./modals/ModalD";
 
 function CardAds({ id, image, status, validation, city, phone, handleDelete }) {
   const [open, setOpen] = useState(false);
@@ -24,7 +24,10 @@ function CardAds({ id, image, status, validation, city, phone, handleDelete }) {
 
   return (
     <article className="card_ads">
-      <img src={image} alt="represente un animal" />
+      <img
+        src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${image}`}
+        alt="represente un animal"
+      />
       <h3>{status === 1 ? "Trouvé" : "Perdu"}</h3>
       <p className="city">{city}</p>
       <span className="validation">{validationText}</span>

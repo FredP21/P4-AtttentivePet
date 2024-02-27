@@ -34,32 +34,30 @@ CREATE TABLE announcement (
 ) ENGINE = InnoDB;
 
 INSERT INTO status_announcement (status) VALUES
-  ('trouvé'),
-  ('perdu');
+  ('Trouvé'),
+  ('Perdu');
 
 INSERT INTO status_validation (status) VALUES
-  ('en attente'),
-  ('validé'),
-  ('refusé');
+  ('En attente'),
+  ('Validé'),
+  ('Refusé');
 INSERT INTO user (nickname, email, hash_password, is_admin) VALUES
-  ('FredP','gg@gg.com','$argon2id$v=19$m=19456,t=2,p=1$qBDcGauRdkq4t9knFtB8Kg$OTlW3jP1qdv52q9vv/Ng6KeI5OLu6WUQjkoElAhq8kI',1),
-  ('FredG','dd@dd.com','$argon2id$v=19$m=19456,t=2,p=1$qBDcGauRdkq4t9knFtB8Kg$OTlW3jP1qdv52q9vv/Ng6KeI5OLu6WUQjkoElAhq8kI',0);
+  ('Admin','gg@gg.com','$argon2id$v=19$m=65536,t=3,p=4$dMC07QHG7Mzx8jcwqQZQ9Q$kPiN5dwKq/0U6UZxv++1IwjtTeMKzvfFInikGGsZiIE',1),
+  ('User','dd@dd.com','$argon2id$v=19$m=65536,t=3,p=4$0j2U+v3obe6PllPs1rZhFg$F6q4SOPEM4WCe6ZA/12lytl6p6/Mn7oSYJQZCRDstFA',0);
 INSERT INTO announcement (image_pet, description, city, phone_number, status_id, validation_id, user_id) VALUES
     ( 
   'https://cdn.pixabay.com/photo/2016/11/29/09/58/dog-1868871_960_720.jpg',
-          '    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab, doloribus. Vero incidunt cupiditate modi! Alias cumque quo voluptatibus architecto ipsam ipsum veritatis, beatae similique quibusdam hic fugit optio, nulla nisi!
-          Ut harum autem animi neque? Quis consequuntur repudiandae ex quia! Modi dolorum ullam minus! Vel facilis a natus laudantium mollitia, quo modi laborum voluptatibus, impedit ex quisquam incidunt. Veniam, debitis.',
+          ' J ai perdu mon chien, il est de couleur marron et il est très gentil. Il s appelle Fino, Si vous le trouvez, merci de me contacter.',
           'Paris',
           '0123456789',
           1,
-          2,
+          1,
           1
           ),
           ( 
           'https://cdn.pixabay.com/photo/2016/11/29/09/58/dog-1868871_960_720.jpg',
-          '    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab, doloribus. Vero incidunt cupiditate modi! Alias cumque quo voluptatibus architecto ipsam ipsum veritatis, beatae similique quibusdam hic fugit optio, nulla nisi!
-          Ut harum autem animi neque? Quis consequuntur repudiandae ex quia! Modi dolorum ullam minus! Vel facilis a natus laudantium mollitia, quo modi laborum voluptatibus, impedit ex quisquam incidunt. Veniam, debitis.',
-          'Paris',
+          '   J ai perdu mon chien, il est de couleur marron et il est très gentil. Il s appelle GIGI, Si vous le trouvez, merci de me contacter.',
+          'Vienne',
           '0123456789',
           2,
           1,
@@ -67,8 +65,7 @@ INSERT INTO announcement (image_pet, description, city, phone_number, status_id,
           ),
           (
           'https://cdn.pixabay.com/photo/2016/11/29/09/58/dog-1868871_960_720.jpg',
-          '    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab, doloribus. Vero incidunt cupiditate modi! Alias cumque quo voluptatibus architecto ipsam ipsum veritatis, beatae similique quibusdam hic fugit optio, nulla nisi!
-          Ut harum autem animi neque? Quis consequuntur repudiandae ex quia! Modi dolorum ullam minus! Vel facilis a natus laudantium mollitia, quo modi laborum voluptatibus, impedit ex quisquam incidunt. Veniam, debitis.',
+          ' AAAA AAAAAAAAA AAAAAAAAAAAAAA AAAAAAAAAAA AAAAAAAA AAAAAAAAAAAAAAAA AAAAAAAAAAaaa aaaaaaaaaaaa aaaaaaaa aaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaa aaaaaaa aaaa aaaaaaaa aaa',
           'Paris',
           '0123456789',
           2,
@@ -77,9 +74,8 @@ INSERT INTO announcement (image_pet, description, city, phone_number, status_id,
           ),
           (
          'https://cdn.pixabay.com/photo/2016/11/29/09/58/dog-1868871_960_720.jpg',
-          '    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab, doloribus. Vero incidunt cupiditate modi! Alias cumque quo voluptatibus architecto ipsam ipsum veritatis, beatae similique quibusdam hic fugit optio, nulla nisi!
-          Ut harum autem animi neque? Quis consequuntur repudiandae ex quia! Modi dolorum ullam minus! Vel facilis a natus laudantium mollitia, quo modi laborum voluptatibus, impedit ex quisquam incidunt. Veniam, debitis.',
-          'Paris',
+          '    J ai perdu mon chien, il est de couleur marron et il est très gentil. Il s appelle Fino, Si vous le trouvez, merci de me contacter.',
+          'Vienne',
           '0123456789',
           1,
           2,

@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import notshow from "../assets/notshow.png";
+import show from "../assets/show.png";
 import "../styles/login.scss";
 
 function Register() {
@@ -28,7 +30,7 @@ function Register() {
           { nickname, email, password }
         );
         if (response.status === 201) {
-          navigate("/login");
+          navigate("/connexion");
         }
       } catch (err) {
         console.error(err);
@@ -36,61 +38,72 @@ function Register() {
     }
   };
   return (
-    <section className="register">
+    <main className="register">
       <h1>Inscription</h1>
       <form onSubmit={handleSubmitRegister}>
-        <label htmlFor="nickname">
-          Pseudo:
-          <input
-            type="name"
-            name="nickname"
-            id="nickname"
-            placeholder="Pseudo"
-            autoComplete="nickname"
-            onChange={handleChangeRegister}
-            value={registerInfo.nickname}
-          />
-        </label>
-        <label htmlFor="email">
-          Email:
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Email"
-            onChange={handleChangeRegister}
-            value={registerInfo.email}
-          />
-        </label>
+        <label htmlFor="nickname">Pseudo :</label>
+        <input
+          type="name"
+          name="nickname"
+          id="nickname"
+          placeholder="Pseudo"
+          autoComplete="nickname"
+          onChange={handleChangeRegister}
+          value={registerInfo.nickname}
+          required
+        />
+        <label htmlFor="email">Email :</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Email"
+          onChange={handleChangeRegister}
+          value={registerInfo.email}
+          required
+        />
         <label htmlFor="password">
-          Mot de passe:
-          <input
-            type={isShown ? "text" : "password"}
-            name="password"
-            id="password"
-            placeholder="********"
-            autoComplete="off"
-            value={registerInfo.password}
-            onChange={handleChangeRegister}
+          Mot de passe :{" "}
+          <img
+            src={isShown ? show : notshow}
+            alt="un logo d'un oeil ouvert ou fermé selon si vous voulez affichez le mot de passe."
+            onClick={() => setIsShown(!isShown)}
+            aria-hidden="true"
           />
         </label>
+        <input
+          type={isShown ? "text" : "password"}
+          name="password"
+          id="password"
+          placeholder="********"
+          autoComplete="off"
+          value={registerInfo.password}
+          onChange={handleChangeRegister}
+          required
+        />
         <label htmlFor="confirmPassword">
-          Confirmer le mot de passe:
-          <input
-            type={isShown ? "text" : "password"}
-            name="confirmPassword"
-            id="confirmPassword"
-            placeholder="********"
-            autoComplete="off"
-            value={registerInfo.confirmPassword}
-            onChange={handleChangeRegister}
+          Confirmer le mot de passe :{" "}
+          <img
+            src={isShown ? show : notshow}
+            alt="un logo d'un oeil ouvert ou fermé selon si vous voulez affichez le mot de passe."
+            onClick={() => setIsShown(!isShown)}
+            aria-hidden="true"
           />
         </label>
-        <label htmlFor="checkbox">Montrer le mot de passe</label>
-        <input type="checkbox" onChange={() => setIsShown(!isShown)} />
+        <input
+          type={isShown ? "text" : "password"}
+          name="confirmPassword"
+          id="confirmPassword"
+          placeholder="********"
+          autoComplete="off"
+          value={registerInfo.confirmPassword}
+          onChange={handleChangeRegister}
+          required
+        />
         <button type="submit">S'inscrire</button>
       </form>
-    </section>
+      <Link to="/connexion">Vous avez déjà un compte ?</Link>
+    </main>
   );
 }
 

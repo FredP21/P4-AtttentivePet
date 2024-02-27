@@ -1,0 +1,33 @@
+@import "variables.scss";
+
+.card_admin {
+  display: grid;
+  grid-template-columns: 24% 24% 24% 24% 4%;
+  grid-template-rows: 1fr;
+  background-color: rgba($color: $secondary, $alpha: 0.6);
+  width: 100vw;
+  height: 50px;
+  padding: 12px;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 5px;
+  color: $font-color-secondary;
+  font-size: 20px;
+  @media screen and (max-width: 500px) {
+    width: 320px;
+    grid-template-columns: 10% 40% 40% 10%;
+  }
+  .id_card {
+    color: $font-color;
+  }
+  .statutOrMail {
+    @media screen and (max-width: 500px) {
+      display: none;
+    }
+  }
+  .icon_admin_card {
+    color: rgba($color: red, $alpha: 0.5);
+    font-size: 26px;
+  }
+}

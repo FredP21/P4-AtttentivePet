@@ -42,6 +42,7 @@ const login = async (req, res, next) => {
         .cookie("user_token", token, {
           httpOnly: true,
           path: "/",
+          maxAge: 300000, // 5 minutes
         })
         .json(user);
     }
@@ -52,11 +53,37 @@ const login = async (req, res, next) => {
   }
 };
 const logout = (req, res) => {
-  res.clearCookie("user_token", { httpOnly: true, path: "/" }).sendStatus(200);
+  res
+    .clearCookie("user_token", { httpOnly: true, path: "/", maxAge: 0 })
+    .sendStatus(200);
 };
 
+// eslint-disable-next-line consistent-return
+const getUser = async (req, res, next) => {
+  try {
+    const token = req.cookies.user_token;
+    if (!token) {
+      return res.status(401).json({ message: "Not authenticated" });
+    }
+
+    const decoded = jwt.verify(token, process.env.APP_SECRET);
+    const user = await tables.user.read(decoded.id);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    delete user.hash_password;
+    res.json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+    next(err);
+  }
+};
 module.exports = {
   add,
   login,
   logout,
+  getUser,
 };

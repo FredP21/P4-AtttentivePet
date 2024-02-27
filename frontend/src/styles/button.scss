@@ -1,0 +1,88 @@
+@import "variables.scss";
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  text-decoration: none;
+  width: 250px;
+
+  button {
+    width: 100%;
+    padding: 5px;
+    margin: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    font-weight: 600;
+    gap: 0.5rem;
+    align-items: center;
+    @media screen and (max-width: 850px) {
+      animation-duration: 2s;
+      animation-name: clignotement;
+      animation-iteration-count: infinite;
+      border-bottom: 1px solid $secondary;
+      @keyframes clignotement {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.2;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+    }
+    p {
+      margin: 0;
+      position: relative;
+      font-size: 20px;
+      color: $font-color;
+      &::before {
+        position: absolute;
+        /*   box-sizing: border-box; */
+        content: "";
+        width: 0%;
+        inset: 0;
+        color: $secondary;
+        overflow: hidden;
+        transition: 0.3s ease-out;
+      }
+    }
+
+    &::after {
+      position: absolute;
+      content: "";
+      width: 0;
+      left: 0;
+      bottom: -7px;
+      background: $secondary;
+      height: 2px;
+      transition: 0.3s ease-out;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+
+    &:hover {
+      p::before {
+        width: 100%;
+      }
+      svg {
+        transform: translateX(4px);
+        color: $secondary;
+      }
+    }
+    svg {
+      color: $font-color;
+      transition: 0.2s;
+      position: relative;
+      width: 15px;
+      transition-delay: 0.2s;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import "../styles/modal_destroy.scss";
+import "../../styles/modal_destroy.scss";
 
 function ModalD({ handleOpen, handleDelete, id }) {
   return (
