@@ -1,9 +1,28 @@
 ## Concept
 
-This template is meant to serve as a foundation for every P2/P3 following the React-Express-MySQL stack, as learned in Wild Code School.
-It's pre-configured with a set of tools which'll help students produce industry-quality and easier-to-maintain code, while staying a pedagogical tool.
+🌟 Attentive Pet: Connecting Hearts, Finding Homes 🐾
 
-## Setup & Use
+Meet Attentive Pet, your go-to platform for seamlessly creating and discovering lost or found pet announcements. We understand the deep bond you share with your furry companions, and we're here to make sure they find their way back home or into caring arms.
+
+Key Features:
+
+Effortless Announcements: Attentive Pet streamlines the process of creating and sharing lost or found pet announcements. A user-friendly interface guides you through the quick steps of providing essential details such as pet description, last seen location, and contact information.
+
+Instant Visibility: Your announcements are immediately visible to our community of pet lovers. Whether you're desperately seeking your missing pet or have opened your heart and home to a found one, Attentive Pet ensures your message reaches the right eyes promptly.
+
+Browse and Connect: Easily browse through a curated list of lost and found pet announcements in your area. Connect with fellow pet owners, sharing support, information, and solidarity during these emotionally challenging times.
+
+Anonymous Reporting: Attentive Pet respects your privacy. If you've found a lost pet but wish to remain anonymous, you can still contribute to the community by sharing essential details without revealing your identity.
+
+Impact:
+
+Swift Reunions: Attentive Pet accelerates the process of reuniting lost pets with their families by providing a central hub for announcements and quick information exchange.
+
+Community Support: By fostering a community where pet owners actively engage and support each other, Attentive Pet turns every user into a potential ally in the quest to bring pets back home.
+
+No Pet Left Behind: With Attentive Pet, every lost or found pet has a chance to be seen, heard, and cared for, ensuring that no furry friend is left wandering alone.
+
+Embrace the power of community and compassion with Attentive Pet. Let's make sure every paw finds its way to the warmth and love it deserves. 🏡🐾
 
 ### Windows users
 
@@ -18,13 +37,12 @@ git config --global core.autocrlf false
 
 - In VSCode, install plugins **Prettier - Code formatter** and **ESLint** and configure them
 - Clone this repo, enter it
-- Run command `npm install`
+- Run command `npm install` on the frontend folder and backend folder
 - Create environment files (`.env`) in both `backend` and `frontend`: you can copy `.env.sample` files as starters (**don't** delete them)
 
 ### Available Commands
 
 - `db:migrate` : Run the database migration script
-- `db:seed` : Run the database seed script
 - `dev` : Starts both servers (frontend + backend) in one terminal
 - `dev-front` : Starts the React frontend server
 - `dev-back` : Starts the Express backend server
@@ -35,35 +53,10 @@ git config --global core.autocrlf false
 ### Tools
 
 - _Concurrently_ : Allows for several commands to run concurrently in the same CLI
-- _Husky_ : Allows to execute specific commands that trigger on _git_ events
 - _Vite_ : Alternative to _Create-React-App_, packaging less tools for a more fluid experience
 - _ESLint_ : "Quality of code" tool, ensures chosen rules will be enforced
 - _Prettier_ : "Quality of code" tool as well, focuses on the styleguide
 - _ Airbnb Standard_ : One of the most known "standards", even though it's not officially linked to ES/JS
-
-## Deployment with Traefik
-
-> ⚠️ Prerequisites : You must have installed and configured Traefik on your VPS beforehand.
-> https://github.com/WildCodeSchool/vps-traefik-starter-kit/
-
-For deployment, you have to go to `secrets` → app `actions` on the github repo to insert via `New repository secret` :
-
-- SSH_HOST : IP address of your VPS
-- SSH_USER : SSH login to your VPS
-- SSH_PASSWORD : SSH connection password to your VPS
-
-And a public variable from the tab `/settings/variables/actions` :
-
-- PROJECT_NAME : the name of the project used to create the subdomain.
-
-> ⚠️ Warning : underscores are not allowed. They can cause trouble with the let's encrypt certificate
-
-Use this same tab to add the other environment variables required for the project if any.
-
-Only the backend will be accessible. The root path `"/"` will redirect to the dist folder on your frontend. In order to allow that, please uncomment the line as explain on `backend/src/app.js` (Line 102).
-Because the backend will serve the front, the global variable VITE_BACKEND_URL will be set with an empty string.
-
-Your url will be ` https://${PROJECT-NAME}.${subdomain}.wilders.dev/`.
 
 ### About the database
 
@@ -72,8 +65,3 @@ The database is automaticaly deployed with the name of your repo. During the bui
 ### About public assets (pictures, fonts...)
 
 Don't use any public folder on your frontend. This folder won't be accessible online. You may move your public assets in the `backend/public` folder. Prefer [static assets](https://vitejs.dev/guide/assets) when possible.
-
-### About Logs
-
-If you want to access the logs of your online projet (to follow the deployement or to watch any bug error), connect to your VPS (`ssh user@host`).
-Then, go on your specific project and run  `docker compose logs -t -f`.

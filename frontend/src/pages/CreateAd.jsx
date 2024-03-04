@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/create_ad.scss";
 
 function CreateAd() {
   const [ad, setAd] = useState({});
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleDescriptionChange = (e) => {
     setAd((prevAd) => ({
@@ -51,16 +54,17 @@ function CreateAd() {
     formData.append("userId", user.id);
 
     axios
-      .post(`http://localhost:3310/api/announcements`, formData, {
+      .post(`${import.meta.env.VITE_BACKEND_URL}/api/announcements`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       })
       .then(() => {
-        console.info("Votre annonce a bien été publiée");
+        toast.success("Votre annonce a bien été publiée");
+        navigate("/mes-annonces");
       })
       .catch(() => {
-        console.error("Erreur lors de la publication de votre annonce");
+        toast.error("Erreur lors de la publication de votre annonce");
       });
   };
 
