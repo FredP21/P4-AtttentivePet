@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import Button from "../components/Button";
 import CardAds from "../components/CardAds";
 import { AuthContext } from "../context/AuthContext";
@@ -10,8 +11,8 @@ function MyAds() {
   const [ads, setAds] = useState([]);
   const handleDelete = (id) => {
     axios.delete(`http://localhost:3310/api/announcements/${id}`).then(() => {
-      console.info("Annonce supprimé");
       setAds(ads.filter((ad) => ad.id !== id));
+      toast.success("Annonce supprimée avec succès");
     });
   };
   useEffect(() => {

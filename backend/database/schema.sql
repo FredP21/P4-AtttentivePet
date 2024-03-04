@@ -46,7 +46,7 @@ INSERT INTO user (nickname, email, hash_password, is_admin) VALUES
   ('User','dd@dd.com','$argon2id$v=19$m=65536,t=3,p=4$0j2U+v3obe6PllPs1rZhFg$F6q4SOPEM4WCe6ZA/12lytl6p6/Mn7oSYJQZCRDstFA',0);
 INSERT INTO announcement (image_pet, description, city, phone_number, status_id, validation_id, user_id) VALUES
     ( 
-  'https://cdn.pixabay.com/photo/2016/11/29/09/58/dog-1868871_960_720.jpg',
+  'dogdog.jpg',
           ' J ai perdu mon chien, il est de couleur marron et il est très gentil. Il s appelle Fino, Si vous le trouvez, merci de me contacter.',
           'Paris',
           '0123456789',
@@ -55,7 +55,7 @@ INSERT INTO announcement (image_pet, description, city, phone_number, status_id,
           1
           ),
           ( 
-          'https://cdn.pixabay.com/photo/2016/11/29/09/58/dog-1868871_960_720.jpg',
+          'dogdog.jpg',
           '   J ai perdu mon chien, il est de couleur marron et il est très gentil. Il s appelle GIGI, Si vous le trouvez, merci de me contacter.',
           'Vienne',
           '0123456789',
@@ -64,7 +64,7 @@ INSERT INTO announcement (image_pet, description, city, phone_number, status_id,
           2
           ),
           (
-          'https://cdn.pixabay.com/photo/2016/11/29/09/58/dog-1868871_960_720.jpg',
+          'dogdog.jpg',
           ' AAAA AAAAAAAAA AAAAAAAAAAAAAA AAAAAAAAAAA AAAAAAAA AAAAAAAAAAAAAAAA AAAAAAAAAAaaa aaaaaaaaaaaa aaaaaaaa aaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaa aaaaaaa aaaa aaaaaaaa aaa',
           'Paris',
           '0123456789',
@@ -73,7 +73,7 @@ INSERT INTO announcement (image_pet, description, city, phone_number, status_id,
           2
           ),
           (
-         'https://cdn.pixabay.com/photo/2016/11/29/09/58/dog-1868871_960_720.jpg',
+         'dogdog.jpg',
           '    J ai perdu mon chien, il est de couleur marron et il est très gentil. Il s appelle Fino, Si vous le trouvez, merci de me contacter.',
           'Vienne',
           '0123456789',
