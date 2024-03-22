@@ -34,6 +34,8 @@ const announcementControllers = require("./controllers/announcementControllers")
 const authControllers = require("./controllers/authControllers");
 const { checkLogin } = require("./services/auth");
 const { checkRegister } = require("./services/auth");
+const { checkAuth } = require("./services/auth");
+const { checkAdmin } = require("./services/auth");
 const { checkAddAd } = require("./services/checkAnnouncement");
 const { checkUpdateAd } = require("./services/checkAnnouncement");
 
@@ -44,26 +46,16 @@ router.post("/register", checkRegister, authControllers.add);
 router.post("/auth", checkLogin, authControllers.login);
 router.post("/logout", authControllers.logout);
 
-// Users
-router.get("/users", userControllers.browse);
-router.get("/users/:id", userControllers.read);
-router.post("/users", userControllers.add);
-router.put("/users/:id", userControllers.edit);
-router.delete("/users/:id", userControllers.destroy);
-
 // Announcements
-
-router.get("/announcements", announcementControllers.browse);
-router.get("/announcements/:id", announcementControllers.read);
-router.get("/announcements/user/:id", announcementControllers.readAllByUserId);
 router.get(
   "/announcements/statusandvalidation/:id",
   announcementControllers.readAllByStatusIdAndValidation
 );
-router.get(
-  "/announcements/statement/:id",
-  announcementControllers.readAllByValidationId
-);
+
+/* use middleware to only give access to user */
+router.use(checkAuth);
+
+router.get("/announcements/user/:id", announcementControllers.readAllByUserId);
 router.post(
   "/announcements",
   upload.single("image"),
@@ -76,12 +68,26 @@ router.put(
   checkUpdateAd,
   announcementControllers.edit
 );
+router.delete("/announcements/:id", announcementControllers.destroy);
+router.get("/announcements", announcementControllers.browse);
+router.get("/announcements/:id", announcementControllers.read);
+
+/* use middleware to only give access to admin */
+router.use(checkAdmin);
+
+router.get(
+  "/announcements/statement/:id",
+  announcementControllers.readAllByValidationId
+);
 router.put(
   "/announcements/validation/:id",
   announcementControllers.editValidation
 );
-router.delete("/announcements/:id", announcementControllers.destroy);
-
-/* ************************************************************************* */
+// Users
+router.get("/users", userControllers.browse);
+router.get("/users/:id", userControllers.read);
+router.post("/users", userControllers.add);
+router.put("/users/:id", userControllers.edit);
+router.delete("/users/:id", userControllers.destroy);
 
 module.exports = router;

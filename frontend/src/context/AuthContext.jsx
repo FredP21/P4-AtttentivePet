@@ -25,6 +25,7 @@ function AuthContextProvider({ children }) {
     };
     getUser();
   }, []);
+
   const handleDelog = (navigate) => {
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/api/logout`, {

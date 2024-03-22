@@ -46,7 +46,7 @@ function AdminRoute({ children }) {
 
   useEffect(() => {
     if (!isLoading && (!isAuthenticated || user.is_admin !== 1)) {
-      navigate("/non-admin"); // Remplacez "/non-admin" par la route de votre choix
+      navigate("/non-admin");
     }
   }, [isAuthenticated, user, navigate, isLoading]);
 
