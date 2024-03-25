@@ -1,10 +1,16 @@
-import React from "react";
+import Button from "../components/Button";
+import "../styles/notFound.scss";
 
 function NotFound() {
   return (
-    <div>
-      <h1>404 Not Found</h1>
-    </div>
+    <main className="not_found">
+      <h1>404</h1>
+      <p>
+        Désolé, il semble qu'une erreur s'est produite ou alors cette page
+        n'éxiste plus
+      </p>
+      <Button link="/" title="Retour à l'acceuil" />
+    </main>
   );
 }
 

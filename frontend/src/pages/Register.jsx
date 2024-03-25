@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import notshow from "../assets/notshow.png";
 import show from "../assets/show.png";
 import "../styles/login.scss";
@@ -21,6 +22,7 @@ function Register() {
     e.preventDefault();
     const { nickname, email, password, confirmPassword } = registerInfo;
     if (registerInfo.password !== registerInfo.confirmPassword) {
+      toast.error("Les mots de passe ne correspondent pas.");
       return;
     }
     if (nickname && email && password && confirmPassword) {
@@ -31,6 +33,7 @@ function Register() {
         );
         if (response.status === 201) {
           navigate("/connexion");
+          toast.success("Inscription réussie, vous pouvez vous connecter.");
         }
       } catch (err) {
         console.error(err);

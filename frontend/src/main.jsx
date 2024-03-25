@@ -91,7 +91,7 @@ const router = createBrowserRouter([
         path: "non-admin",
         element: (
           <ProtectedRoute>
-            <NotFound />,
+            <NotFound />
           </ProtectedRoute>
         ),
       },
@@ -99,7 +99,7 @@ const router = createBrowserRouter([
         path: "profil",
         element: (
           <ProtectedRoute>
-            <Profile />,
+            <Profile />
           </ProtectedRoute>
         ),
       },
@@ -107,7 +107,7 @@ const router = createBrowserRouter([
         path: "mes-annonces",
         element: (
           <ProtectedRoute>
-            <MyAds />,
+            <MyAds />
           </ProtectedRoute>
         ),
       },
@@ -115,7 +115,7 @@ const router = createBrowserRouter([
         path: "mes-annonces/:id",
         element: (
           <ProtectedRoute>
-            <EditAd />,
+            <EditAd />
           </ProtectedRoute>
         ),
       },
@@ -123,7 +123,7 @@ const router = createBrowserRouter([
         path: "creer-annonce",
         element: (
           <ProtectedRoute>
-            <CreateAd />,
+            <CreateAd />
           </ProtectedRoute>
         ),
       },

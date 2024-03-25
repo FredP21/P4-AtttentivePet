@@ -15,7 +15,9 @@ function CardAdmin({ id, a, b, c, handleDelete, string }) {
       <span className="nickname_user">{a}</span>
       <span className="statutOrMail">{b}</span>
       <span className="validationOrRole">{c}</span>
-      <IoMdTrash className="icon_admin_card" onClick={() => handleOpen()} />
+      {c === "Admin" ? null : (
+        <IoMdTrash className="icon_admin_card" onClick={() => handleOpen()} />
+      )}
       {open && (
         <ModalAdmin
           string={string}

@@ -33,11 +33,12 @@ function PetLost() {
 
   return (
     <main className="main_announcement">
-      <h2 className="head_pet">
+      <p>
+        <span>{announcement.length}</span>
         {announcement.length <= 1
-          ? `${announcement.length} annonce pour les animaux perdus`
-          : `${announcement.length} annonces pour les animaux perdus`}
-      </h2>
+          ? " annonce pour les animaux trouvés"
+          : " annonces pour les animaux trouvés"}
+      </p>
       {isAuthenticated ? (
         <Button link="/creer-annonce" title="Creez votre annonce" />
       ) : null}
@@ -55,10 +56,6 @@ function PetLost() {
           <p>Aucun résultat trouvé</p>
         )}
       </section>
-
-      {isAuthenticated ? (
-        <Button link="/creer-annonce" title="Creez votre annonce" />
-      ) : null}
     </main>
   );
 }

@@ -1,5 +1,4 @@
 const Joi = require("joi");
-const jwt = require("jsonwebtoken");
 
 const checkLogin = (req, res, next) => {
   const schema = Joi.object({
@@ -31,36 +30,28 @@ const checkRegister = (req, res, next) => {
   }
 };
 
-const checkAuth = (req, res, next) => {
-  const { cookie } = req.headers;
-  let token;
-  if (cookie) {
-    const [tokenValue] = cookie
-      .split("; ")
-      .filter((el) => el.includes("token"))
-      .toString()
-      .split("=")[1];
-    token = tokenValue;
-  }
-  if (token !== undefined) {
-    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-      if (err) {
-        res.status(403).json({ message: "Unauthorized" });
-      } else {
-        req.user = user;
-        next();
-      }
-    });
-  } else {
-    res.status(401).json({ message: "Unauthorized" });
-  }
-};
-const checkAdmin = (req, res, next) => {
-  if (req.user.is_admin === 1) {
-    next();
-  } else {
-    res.status(403).json({ message: "Unauthorized" });
-  }
-};
-module.exports = { checkLogin, checkRegister, checkAuth, checkAdmin };
+// const checkAuth = (req, res, next) => {
+//   const token = req.cookies.user_token; // Accédez au token directement via req.cookies.user_token
+//   console.log(token);
+//   if (token !== undefined) {
+//     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+//       if (err) {
+//         res.status(403).json({ message: "Unauthorized" });
+//       } else {
+//         req.user = user;
+//         next();
+//       }
+//     });
+//   } else {
+//     res.status(401).json({ message: "Unauthorized" });
+//   }
+// };
+// const checkAdmin = (req, res, next) => {
+//   if (req.user.is_admin === 1) {
+//     next();
+//   } else {
+//     res.status(403).json({ message: "Unauthorized" });
+//   }
+// };
+module.exports = { checkLogin, checkRegister };
 // Path: backend/src/controllers/authControllers.js

@@ -34,8 +34,8 @@ const announcementControllers = require("./controllers/announcementControllers")
 const authControllers = require("./controllers/authControllers");
 const { checkLogin } = require("./services/auth");
 const { checkRegister } = require("./services/auth");
-const { checkAuth } = require("./services/auth");
-const { checkAdmin } = require("./services/auth");
+// const { checkAuth } = require("./services/auth");
+// const { checkAdmin } = require("./services/auth");
 const { checkAddAd } = require("./services/checkAnnouncement");
 const { checkUpdateAd } = require("./services/checkAnnouncement");
 
@@ -53,7 +53,7 @@ router.get(
 );
 
 /* use middleware to only give access to user */
-router.use(checkAuth);
+// router.use(checkAuth);
 
 router.get("/announcements/user/:id", announcementControllers.readAllByUserId);
 router.post(
@@ -73,7 +73,7 @@ router.get("/announcements", announcementControllers.browse);
 router.get("/announcements/:id", announcementControllers.read);
 
 /* use middleware to only give access to admin */
-router.use(checkAdmin);
+// router.use(checkAdmin);
 
 router.get(
   "/announcements/statement/:id",

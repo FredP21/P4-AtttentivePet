@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import "../styles/edit_ad.scss";
 
 function EditAd() {
@@ -17,7 +18,6 @@ function EditAd() {
         console.info(err);
       });
   }, [id]);
-  console.info(ad);
 
   const handleDescriptionChange = (e) => {
     setAd((prevAd) => ({
@@ -68,8 +68,8 @@ function EditAd() {
           },
         }
       )
-      .then((res) => {
-        console.info(res);
+      .then(() => {
+        toast.success("Votre annonce a bien été modifiée");
         navigate("/mes-annonces");
       })
       .catch((err) => {

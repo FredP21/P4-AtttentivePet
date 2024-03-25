@@ -43,7 +43,7 @@ class AnnouncementManager extends AbstractManager {
   async readAll() {
     // Execute the SQL SELECT query to retrieve all announcements from the "announcement" table
     const [rows] = await this.database.query(
-      `select announcement.*, user.nickname, status_announcement.status as statutAd, status_validation.status as validationAd from ${this.table} join user on announcement.user_id = user.id join status_announcement on announcement.status_id = status_announcement.id join status_validation on announcement.validation_id = status_validation.id`
+      `select announcement.*, user.nickname, status_announcement.status as statutAd, status_validation.status as validationAd from ${this.table} join user on announcement.user_id = user.id join status_announcement on announcement.status_id = status_announcement.id join status_validation on announcement.validation_id = status_validation.id ORDER BY announcement.id`
     );
 
     // Return the array of announcements

@@ -44,9 +44,10 @@ const login = async (req, res, next) => {
           path: "/",
           maxAge: 300000, // 5 minutes
         })
-        .json(user);
+        .json({ token, user });
+    } else {
+      res.status(403).json({ error: "mot de passe ou identifiant incorrect" });
     }
-    // res.status(403).json({ error: "password incorrect" });
   } catch (err) {
     res.sendStatus(500);
     next(err);
