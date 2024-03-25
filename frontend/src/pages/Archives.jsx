@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import CardAdmin from "../components/CardAdmin";
 import "../styles/archives.scss";
 
@@ -17,7 +18,7 @@ function Archives() {
   }, []);
   const handleDelete = (id) => {
     axios.delete(`http://localhost:3310/api/announcements/${id}`).then(() => {
-      console.info("Annonce supprimé");
+      toast.info("Annonce supprimé");
       setArchives(archives.filter((ad) => ad.id !== id));
     });
   };

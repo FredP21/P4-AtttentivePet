@@ -30,9 +30,7 @@ const cors = require("cors");
 app.use(
   cors({
     origin: [
-      process.env.FRONTEND_URL, // keep this one, after checking the value in `backend/.env`
-      "http://mysite.com",
-      "http://another-domain.com",
+      process.env.FRONTEND_URL, // keep this one, after checking the value in `backend/.env`,
     ],
     credentials: true,
   })
@@ -101,27 +99,5 @@ app.get("*", (req, res) => {
   res.sendFile(`${reactBuildPath}/index.html`);
 });
 */
-
-/* ************************************************************************* */
-
-// Middleware for Error Logging (Uncomment to enable)
-// Important: Error-handling middleware should be defined last, after other app.use() and routes calls.
-
-/*
-// Define a middleware function to log errors
-const logErrors = (err, req, res, next) => {
-  // Log the error to the console for debugging purposes
-  console.error(err);
-  console.error("on req:", req.method, req.path);
-
-  // Pass the error to the next middleware in the stack
-  next(err);
-};
-
-// Mount the logErrors middleware globally
-app.use(logErrors);
-*/
-
-/* ************************************************************************* */
 
 module.exports = app;

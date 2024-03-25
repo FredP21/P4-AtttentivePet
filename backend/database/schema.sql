@@ -42,41 +42,114 @@ INSERT INTO status_validation (status) VALUES
   ('Validé'),
   ('Refusé');
 INSERT INTO user (nickname, email, hash_password, is_admin) VALUES
-  ('Admin','gg@gg.com','$argon2id$v=19$m=65536,t=3,p=4$dMC07QHG7Mzx8jcwqQZQ9Q$kPiN5dwKq/0U6UZxv++1IwjtTeMKzvfFInikGGsZiIE',1),
-  ('User','dd@dd.com','$argon2id$v=19$m=65536,t=3,p=4$0j2U+v3obe6PllPs1rZhFg$F6q4SOPEM4WCe6ZA/12lytl6p6/Mn7oSYJQZCRDstFA',0);
+  ('Admin','admin@email.com','$argon2id$v=19$m=65536,t=3,p=4$d77hMFt8mtrvMeBNfTN12w$vNuWpX4txuAiM5RH/QGo9DR48zu9xCyU+hUJsgaEE8g',1),
+  ('Jean','jean@email.com','$argon2id$v=19$m=65536,t=3,p=4$RKlzJY/Q1/xGbp4ffuX7uw$orZYIBR89XeHXTvEDMwZZno7Yxd5Awnjs1qsdGdZoqM',0),
+  ('Alice', 'alice@email.com', '$argon2id$v=19$m=65536,t=3,p=4$RKlzJY/Q1/xGbp4ffuX7uw$orZYIBR89XeHXTvEDMwZZno7Yxd5Awnjs1qsdGdZoqM', 0),
+('Bob', 'bob@email.com', '$argon2id$v=19$m=65536,t=3,p=4$RKlzJY/Q1/xGbp4ffuX7uw$orZYIBR89XeHXTvEDMwZZno7Yxd5Awnjs1qsdGdZoqM', 0),
+('Charlie', 'charlie@email.com', '$argon2id$v=19$m=65536,t=3,p=4$RKlzJY/Q1/xGbp4ffuX7uw$orZYIBR89XeHXTvEDMwZZno7Yxd5Awnjs1qsdGdZoqM', 0),
+('David', 'david@email.com', '$argon2id$v=19$m=65536,t=3,p=4$RKlzJY/Q1/xGbp4ffuX7uw$orZYIBR89XeHXTvEDMwZZno7Yxd5Awnjs1qsdGdZoqM', 0),
+('Emma', 'emma@email.com', '$argon2id$v=19$m=65536,t=3,p=4$RKlzJY/Q1/xGbp4ffuX7uw$orZYIBR89XeHXTvEDMwZZno7Yxd5Awnjs1qsdGdZoqM', 0),
+('Frank', 'frank@email.com', '$argon2id$v=19$m=65536,t=3,p=4$RKlzJY/Q1/xGbp4ffuX7uw$orZYIBR89XeHXTvEDMwZZno7Yxd5Awnjs1qsdGdZoqM', 0),
+('Grace', 'grace@email.com', '$argon2id$v=19$m=65536,t=3,p=4$RKlzJY/Q1/xGbp4ffuX7uw$orZYIBR89XeHXTvEDMwZZno7Yxd5Awnjs1qsdGdZoqM', 0),
+('Henry', 'henry@email.com', '$argon2id$v=19$m=65536,t=3,p=4$RKlzJY/Q1/xGbp4ffuX7uw$orZYIBR89XeHXTvEDMwZZno7Yxd5Awnjs1qsdGdZoqM', 0);
 INSERT INTO announcement (image_pet, description, city, phone_number, status_id, validation_id, user_id) VALUES
-    ( 
-  'dogdog.jpg',
-          ' J ai perdu mon chien, il est de couleur marron et il est très gentil. Il s appelle Fino, Si vous le trouvez, merci de me contacter.',
-          'Paris',
-          '0123456789',
-          1,
-          1,
-          1
-          ),
-          ( 
-          'dogdog.jpg',
-          '   J ai perdu mon chien, il est de couleur marron et il est très gentil. Il s appelle GIGI, Si vous le trouvez, merci de me contacter.',
-          'Vienne',
-          '0123456789',
-          2,
-          1,
-          2
-          ),
-          (
-          'dogdog.jpg',
-          ' AAAA AAAAAAAAA AAAAAAAAAAAAAA AAAAAAAAAAA AAAAAAAA AAAAAAAAAAAAAAAA AAAAAAAAAAaaa aaaaaaaaaaaa aaaaaaaa aaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaa aaaaaaa aaaa aaaaaaaa aaa',
-          'Paris',
-          '0123456789',
-          2,
-          2,
-          2
-          ),
-          (
-         'dogdog.jpg',
-          '    J ai perdu mon chien, il est de couleur marron et il est très gentil. Il s appelle Fino, Si vous le trouvez, merci de me contacter.',
-          'Vienne',
-          '0123456789',
-          1,
-          2,
-          1);
+(
+'dog1.jpg',
+'Un petit chien joueur et affectueux, répondant au nom de Fino. Aperçu pour la dernière fois en train de courir joyeusement. Veuillez me contacter si vous le retrouvez.',
+'Paris',
+'0123456789',
+1,
+2,
+5
+),
+
+(
+'dog2.jpg',
+'Un grand chien de couleur marron foncé avec une queue touffue. Porte un collier rouge. Répond au nom de Max. Si vous l apercevez, veuillez me contacter rapidement.',
+'Marseille',
+'0234567891',
+2,
+2,
+3
+),
+
+(
+'dog3.jpg',
+'Un chien tacheté de noir et blanc, très énergique et joueur. Il répond au nom de Lucky. Disparu près du parc central. Merci de m aider à le retrouver.',
+'Lyon',
+'0345678912',
+1,
+2,
+8
+),
+
+(
+'dog4.jpg',
+'Un petit chien blanc avec des oreilles tombantes. Porte un collier bleu. Répond au nom de Daisy. Dernièrement vu près de la rivière. Aidez-moi à le ramener à la maison.',
+'Toulouse',
+'0456789123',
+2,
+2,
+4
+),
+
+(
+'dog5.jpg',
+'Un chiot noir avec une tache blanche sur le museau. Très sociable et aimable. Si vous l apercevez, veuillez m appeler immédiatement.',
+'Nice',
+'0567891234',
+1,
+2,
+6
+),
+
+(
+'dog6.jpg',
+'Un chien de taille moyenne avec des poils longs et bruns. Très joueur et sociable. Il répond au nom de Charlie. Dernièrement vu près du parc à chiens.',
+'Strasbourg',
+'0678912345',
+2,
+2,
+2
+),
+
+(
+'dog7.jpg',
+'Un petit chien noir avec une queue touffue. Très timide mais amical. Si vous le voyez, veuillez me contacter. Récompense offerte.',
+'Bordeaux',
+'0789123456',
+1,
+2,
+7
+),
+
+(
+'dog5.jpg',
+'Un grand chien de race husky blanc et gris. Porte un harnais rouge. Très joueur et dynamique. Si vous le retrouvez, veuillez me contacter dès que possible.',
+'Nantes',
+'0891234567',
+2,
+2,
+2
+),
+
+(
+'dog8.jpg',
+'Un petit chien brun avec une queue courte. Très espiègle et aime les câlins. Répond au nom de Bella. Merci de m aider à la retrouver.',
+'Montpellier',
+'0912345678',
+1,
+1,
+4
+),
+
+(
+'dog6.jpg',
+'Un chiot doré avec des yeux marron foncé. Très joueur et aimable. Si vous l apercevez, veuillez me contacter. Récompense offerte.',
+'Rennes',
+'0123456780',
+2,
+1,
+8
+);
+

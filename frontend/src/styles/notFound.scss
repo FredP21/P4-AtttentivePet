@@ -1,0 +1,25 @@
+@import "variables.scss";
+
+.not_found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100svh;
+  color: $font-color;
+  background-color: $primary;
+  text-align: center;
+  padding: 1rem;
+  margin: 0;
+  h1 {
+    font-size: 5rem;
+  }
+  p {
+    font-size: 1.2rem;
+    font-style: italic;
+  }
+  button {
+    margin-top: 50px;
+    width: 80%;
+  }
+}
