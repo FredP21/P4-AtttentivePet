@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import CardAdmin from "../components/CardAdmin";
 import "../styles/archives.scss";
 
@@ -17,7 +18,7 @@ function Users() {
   }, []);
   const handleDelete = (id) => {
     axios.delete(`http://localhost:3310/api/users/${id}`).then(() => {
-      console.info("Utilisateur supprimé");
+      toast.info("Utilisateur supprimé");
       setUsers(users.filter((ad) => ad.id !== id));
     });
   };

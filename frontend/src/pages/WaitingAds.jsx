@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import CardFind from "../components/CardFind";
 import "../styles/waiting_ads.scss";
 
@@ -29,6 +30,7 @@ function WaitingAds() {
       )
       .then(() => {
         setWaitingAds(waitingAds.filter((ad) => ad.id !== id));
+        toast.info("Annonce validée");
       });
   };
   const handleUpdateWrong = (id) => {
@@ -43,6 +45,7 @@ function WaitingAds() {
       )
       .then(() => {
         setWaitingAds(waitingAds.filter((ad) => ad.id !== id));
+        toast.info("Annonce refusée");
       });
   };
 

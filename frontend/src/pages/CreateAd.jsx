@@ -6,7 +6,13 @@ import { AuthContext } from "../context/AuthContext";
 import "../styles/create_ad.scss";
 
 function CreateAd() {
-  const [ad, setAd] = useState({});
+  const [ad, setAd] = useState({
+    desc: "",
+    statusId: "",
+    image: null,
+    city: "",
+    phoneNumber: "",
+  });
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 

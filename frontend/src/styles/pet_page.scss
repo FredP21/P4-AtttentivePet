@@ -3,10 +3,16 @@
 .main_announcement {
   display: flex;
   flex-direction: column;
-  h2 {
+  p {
     text-align: center;
     padding: 10px;
     margin-bottom: 0;
+    margin-top: 0;
+    font-size: 1rem;
+    span {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
   }
   input {
     margin: 50px 0 10px;
@@ -30,5 +36,8 @@
     @media screen and (min-width: 1024px) {
       gap: 30px;
     }
+  }
+  button {
+    width: 100%;
   }
 }

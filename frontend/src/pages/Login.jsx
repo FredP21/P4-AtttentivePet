@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import connexion from "../assets/login.png";
 import notshow from "../assets/notshow.png";
 import show from "../assets/show.png";
@@ -11,7 +12,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isShown, setIsShown] = useState(false);
-  const { setUser } = useContext(AuthContext);
+  const { setUser, user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -24,15 +25,28 @@ function Login() {
       )
       .then((res) => {
         if (res.data) {
-          setUser(res.data);
-          console.info(res.data);
-          if (res.data.is_admin === 1) {
+          setUser(res.data.user);
+          console.info(user);
+          if (res.data.user.is_admin === 1) {
             navigate("/en-attente");
-          } else navigate("/");
+            toast.info("Vous êtes connecté en tant qu'admin");
+          } else {
+            navigate("/");
+            toast.success(
+              `Bonjour ${res.data.user.nickname}, Vous êtes connecté`
+            );
+          }
         } else {
           console.error("No user found");
         }
         // navigate("/");
+      })
+      .catch((err) => {
+        if (err.response.status === 403) {
+          toast.error("Email ou mot de passe incorrect");
+        } else {
+          toast.error("Une erreur est survenue");
+        }
       });
   };
   return (
