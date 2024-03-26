@@ -21,6 +21,14 @@ function CreateAd() {
       ...prevAd,
       desc: e.target.value,
     }));
+
+    if (e.target.value.length < 10 || e.target.value.length > 250) {
+      e.target.setCustomValidity(
+        "La description doit comporter entre 10 et 250 caractères"
+      );
+    } else {
+      e.target.setCustomValidity("");
+    }
   };
   const handleStatusChange = (e) => {
     setAd((prevAd) => ({
@@ -41,9 +49,10 @@ function CreateAd() {
     }));
   };
   const handlePhoneChange = (e) => {
+    const onlyNums = e.target.value.replace(/[^0-9]/g, "");
     setAd((prevAd) => ({
       ...prevAd,
-      phoneNumber: e.target.value,
+      phoneNumber: onlyNums,
     }));
   };
   const handleSubmit = (e) => {
@@ -99,6 +108,12 @@ function CreateAd() {
             maxLength={250}
             minLength={10}
             required
+            onInvalid={(e) => {
+              e.target.setCustomValidity(
+                "La description doit comporter entre 10 et 250 caractères"
+              );
+            }}
+            onInput={(e) => e.target.setCustomValidity("")}
           />
         </span>
         <span className="label_status">
@@ -119,12 +134,19 @@ function CreateAd() {
           <label htmlFor="phone">Contact</label>
           <input
             className="phone_input"
-            type="number"
+            type="tel"
             id="phone"
             name="phone"
             value={ad.phoneNumber}
             onChange={handlePhoneChange}
             required
+            pattern="\d{10}"
+            onInvalid={(e) => {
+              e.target.setCustomValidity(
+                "Le numéro doit comporter 10 caractères"
+              );
+            }}
+            onInput={(e) => e.target.setCustomValidity("")}
           />
         </span>
         <span>

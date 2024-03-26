@@ -22,7 +22,6 @@ function NavbarMobile() {
   const { user, handleDelog } = useContext(AuthContext);
   const [activeLink, setActiveLink] = useState(0);
   const navigate = useNavigate();
-  console.info(user);
 
   const handleActive = (e) => {
     setActiveLink(e);

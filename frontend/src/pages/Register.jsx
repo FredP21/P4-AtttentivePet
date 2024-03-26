@@ -53,6 +53,9 @@ function Register() {
           autoComplete="nickname"
           onChange={handleChangeRegister}
           value={registerInfo.nickname}
+          minLength={3}
+          maxLength={20}
+          pattern="[a-zA-Z][a-zA-Z0-9\s]*"
           required
         />
         <label htmlFor="email">Email :</label>
@@ -82,6 +85,8 @@ function Register() {
           autoComplete="off"
           value={registerInfo.password}
           onChange={handleChangeRegister}
+          minLength={4}
+          maxLength={20}
           required
         />
         <label htmlFor="confirmPassword">
@@ -101,6 +106,8 @@ function Register() {
           autoComplete="off"
           value={registerInfo.confirmPassword}
           onChange={handleChangeRegister}
+          minLength={4}
+          maxLength={20}
           required
         />
         <button type="submit">S'inscrire</button>

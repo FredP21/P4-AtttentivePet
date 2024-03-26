@@ -5,7 +5,7 @@ const checkAddAd = (req, res, next) => {
   const schema = Joi.object({
     desc: Joi.string().min(10).max(250).required(),
     city: Joi.string().required(),
-    phoneNumber: Joi.string().required(),
+    phoneNumber: Joi.string().length(10).required(),
     statusId: Joi.number().required(),
     validationId: Joi.number().required(),
     userId: Joi.number().required(),
@@ -26,7 +26,7 @@ const checkUpdateAd = (req, res, next) => {
   const schema = Joi.object({
     description: Joi.string().min(10).max(250).required(),
     city: Joi.string().required(),
-    phoneNumber: Joi.string().required(),
+    phoneNumber: Joi.string().length(10).required(),
     statusId: Joi.number().required(),
     validationId: Joi.number().required(),
   });

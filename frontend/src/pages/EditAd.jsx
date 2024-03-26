@@ -122,12 +122,14 @@ function EditAd() {
           <label htmlFor="phone">Contact</label>
           <input
             className="phone_input"
-            type="number"
+            type="tel"
             id="phone"
             name="phone"
             value={ad.phone_number}
             onChange={handlePhoneChange}
             required
+            pattern="\d{10}"
+            inputMode="numeric"
           />
         </span>
         <span>

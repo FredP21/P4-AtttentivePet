@@ -50,17 +50,17 @@ const cookieParser = require("cookie-parser");
 
 app.use(cookieParser());
 
-app.use((req, res, next) => {
-  if (req.cookies.user_token) {
-    // Renouveler le cookie à chaque requête
-    res.cookie("user_token", req.cookies.user_token, {
-      httpOnly: true,
-      path: "/",
-      maxAge: 300000, // 5 minutes
-    });
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   if (req.cookies.user_token) {
+//     // Renouveler le cookie à chaque requête
+//     res.cookie("user_token", req.cookies.user_token, {
+//       httpOnly: true,
+//       path: "/",
+//       maxAge: 300000, // 5 minutes
+//     });
+//   }
+//   next();
+// });
 /* ************************************************************************* */
 
 // Import the API routes from the router module

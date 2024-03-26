@@ -16,7 +16,7 @@ const checkLogin = (req, res, next) => {
 };
 const checkRegister = (req, res, next) => {
   const schema = Joi.object({
-    nickname: Joi.string().min(3).max(20).required(),
+    nickname: Joi.string().alphanum().min(3).max(20).required(),
     email: Joi.string().email().required(),
     password: Joi.string().min(4).max(20).required(),
   });

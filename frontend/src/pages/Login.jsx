@@ -12,42 +12,41 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isShown, setIsShown] = useState(false);
-  const { setUser, user } = useContext(AuthContext);
+  const { getUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    // Ajoutez le mot-clé async ici
     e.preventDefault();
-    axios
-      .post(
+    try {
+      const res = await axios.post(
+        // Utilisez await ici pour attendre que la requête se termine
         `${import.meta.env.VITE_BACKEND_URL}/api/auth`,
         { email, password },
         { withCredentials: true }
-      )
-      .then((res) => {
-        if (res.data) {
-          setUser(res.data.user);
-          console.info(user);
-          if (res.data.user.is_admin === 1) {
-            navigate("/en-attente");
-            toast.info("Vous êtes connecté en tant qu'admin");
-          } else {
-            navigate("/");
-            toast.success(
-              `Bonjour ${res.data.user.nickname}, Vous êtes connecté`
-            );
-          }
+      );
+
+      if (res.data) {
+        await getUser(); // Utilisez await ici pour attendre que getUser() se termine
+        if (res.data.user.is_admin === 1) {
+          navigate("/en-attente");
+          toast.info("Vous êtes connecté en tant qu'admin");
         } else {
-          console.error("No user found");
+          navigate("/");
+          toast.success(
+            `Bonjour ${res.data.user.nickname}, Vous êtes connecté`
+          );
         }
-        // navigate("/");
-      })
-      .catch((err) => {
-        if (err.response.status === 403) {
-          toast.error("Email ou mot de passe incorrect");
-        } else {
-          toast.error("Une erreur est survenue");
-        }
-      });
+      } else {
+        console.error("No user found");
+      }
+    } catch (err) {
+      if (err.response && err.response.status === 403) {
+        toast.error("Email ou mot de passe incorrect");
+      } else {
+        toast.error("Une erreur est survenue");
+      }
+    }
   };
   return (
     <main className="login">
